@@ -26,7 +26,7 @@ public class SMServiceImplementation implements SMService {
 	public String sendOTPVerificationOnMobile(String mobile) {
 		try {
 			if (register_Repo.existsByMobileno(mobile)) {
-				System.out.println("exists");
+				System.out.println("existss");
 				return "EXISTS";
 			}
 			int otp = (int) (Math.random() * 900000) + 100000;
