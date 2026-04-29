@@ -44,3 +44,30 @@ jobs:
         key: ${{ secrets.EC2_KEY }}
         source: "target/ASTU_JMEE-JLEE-0.0.1-SNAPSHOT.jar"
         target: "/home/ubuntu/ASTU_CEE_JMEE_UAT/"
+
+    - name: Confirm JAR Copy to EC2 Server
+      run: echo "JAR file Copied successfully"
+
+    - name: Deploy to EC2
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USER }}
+        key: ${{ secrets.EC2_KEY }}
+        script: |
+          cd /home/ubuntu/AgriPGProjectUAT
+
+          echo "🛑 Stopping & removing old container...."
+          docker rm -f astuceejmee-container
+
+          echo "🧹 Removing old image..."
+          docker rmi astuceejmee-app
+
+          echo "📦 Building new Docker image..."
+          docker build -t astuceejmee-app .
+
+
+          echo "🚀 Running container..."
+          docker run -d --name astuceejmee-container -p 8081:8081 astuceejmee-app
+
+          echo "✅ Deployment completed! "
