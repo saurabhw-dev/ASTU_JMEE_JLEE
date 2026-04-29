@@ -32,3 +32,15 @@ jobs:
 
     - name: Confirm JAR creation
       run: echo "JAR file created successfully"
+
+    - name: List target directory
+      run: ls -lh target
+
+    - name: Copy JAR to EC2 (/home/ubuntu/AgriPGProjectUAT)
+      uses: appleboy/scp-action@v0.1.7
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USER }}
+        key: ${{ secrets.EC2_KEY }}
+        source: "target/MAUBPGProject-0.0.1-SNAPSHOT.jar"
+        target: "/home/ubuntu/ASTU_CEE_JMEE_UAT/"
