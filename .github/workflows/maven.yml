@@ -55,7 +55,7 @@ jobs:
         username: ${{ secrets.EC2_USER }}
         key: ${{ secrets.EC2_KEY }}
         script: |
-          cd /home/ubuntu/AgriPGProjectUAT
+          cd /home/ubuntu/ASTU_CEE_JMEE_UAT
 
           echo "🛑 Stopping & removing old container...."
           docker rm -f astuceejmee-container
