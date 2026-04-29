@@ -38,7 +38,7 @@ public class EmailController {
 	
 	@PostMapping("/VERIFY_EMAIL_OTP")
 	public ResponseEntity<?> verifyEmailOtp(@RequestParam String email,@RequestParam String otp) {
-		System.out.println("Verify EMAIL OTP");
+		System.out.println("Verify EMAIL OTP ss");
 		boolean isValid = email_ser.verifyEMAILOTP(email, otp);
 	    if (isValid) {
 	        return ResponseEntity.ok("Verified");
