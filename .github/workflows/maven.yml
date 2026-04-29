@@ -31,7 +31,7 @@ jobs:
       run: mvn clean install -DskipTests
 
     - name: Confirm JAR creation
-      run: echo "JAR file created successfully"
+      run: echo "JAR file created successfullsy"
 
     - name: List target directory
       run: ls -lh target
